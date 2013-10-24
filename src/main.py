@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 # =============================================================================
 # Tic-Tac-Toe Oyunu / Tic-Tac-Toe Game
-# Copyright (C) 2013 Osman TUNÇELLİ
+# Copyright (C) 2013 OSMAN TUNCELLI
 # 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,8 +25,8 @@ from random import choice, randint
 
 signs = ("O", "X")
 conditions = ((1,2,3),(4,5,6),(7,8,9), # Horizontal
-                      (3,5,7),(1,5,9), # Diagonal
-                      (1,4,7),(2,5,8),(3,6,9)) # Vertical
+              (3,5,7),(1,5,9), # Diagonal
+              (1,4,7),(2,5,8),(3,6,9)) # Vertical
 
 class ShowPopup(Popup): 
     def __init__(self, baslik, mesaj, **kwargs):
@@ -46,7 +45,7 @@ class TicTacToe(GridLayout):
             self.add_widget(Button(font_size=100, on_press=self.button_pressed))
 
     def show_draw_popup(self):
-        ShowPopup('Game Over!', u'Draw!').open()
+        ShowPopup('Game Over!', 'Draw!')
     
     def reset(self):
         for child in self.children:
@@ -95,7 +94,7 @@ class TicTacToe(GridLayout):
         self.children[move-1].text = signs[0]
         status_code = self.after_move()
         if status_code == 1:
-            ShowPopup(u'Game Over!', u'You Lose!').open()
+            ShowPopup('Game Over!', 'You Lose!')
         elif status_code == 2:
             self.show_draw_popup()
         if status_code in (1,2):
@@ -104,12 +103,12 @@ class TicTacToe(GridLayout):
     
     def button_pressed(self, w):
         if w.text:
-            ShowPopup('Error!', u"There is a sign already!")
+            ShowPopup('Error!', "There is a sign already!")
             return
         w.text = signs[1]
         status_code = self.after_move()
         if status_code == 1:
-            ShowPopup('Game Over!', u'Congratulations! You Win!')
+            ShowPopup('Game Over!', 'Congratulations! You Win!')
         elif status_code == 2:
             self.show_draw_popup()
         if status_code in (1,2):
@@ -119,6 +118,7 @@ class TicTacToe(GridLayout):
         
 class TheGame(App):
     def build(self):
+        self.title = 'Tic-Tac-Toe'
         return TicTacToe()
 
 if __name__ == '__main__':
