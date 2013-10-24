@@ -1,0 +1,3 @@
+title=Tic-Tac-Toe
+author=Osman
+orientation=landscape
